@@ -46,13 +46,29 @@ Students need tutors, and tutors need students; we connect them. We aim to offer
 
 ## Key Features
 
-- Course Scraper
-- Login Authentication
-- Frictionless Design of the App
-- Fuzzy Searching of Courses
-- Tutoring Assignment
-- Tutor Finding
-- Local Data Persistence
+### Course Scraper
+
+The course scraper feature allows the app to fetch and retrieve up-to-date course information from UVic's official sources. It ensures that the app has the most accurate and recent course data for that semester, enabling users to search for tutors and courses with precision.
+
+### Login Authentication
+
+The login authentication feature ensures the security of user accounts and information. Users can create accounts, log in securely, and access personalized features within the app. This feature protects user data and provides a seamless and trustworthy user experience.
+
+### Frictionless App Design
+
+The app incorporates a frictionless design approach, focusing on creating an intuitive and user-friendly interface. The design aims to minimize complexity and streamline the user journey, making it easy for users to navigate through the app, search for tutors, and schedule tutoring sessions effortlessly.
+
+### Fuzzy Searching of Courses
+
+The fuzzy searching feature enhances the search functionality within the app. It provides accurate and relevant results even when users input approximate or misspelled course names or keywords. This feature improves the user experience by ensuring users can find the desired courses quickly and easily.
+
+### Tutoring Assignment
+
+The tutoring assignment feature enables the app to match students with suitable tutors based on their academic needs and preferences. It considers factors such as course requirements, availability, location, and user preferences to facilitate efficient and effective tutoring assignments. This simplifies the process of finding the right tutor and provides students with a comprehensive directory of available tutors, enabling them to make informed decisions when selecting a tutor.
+
+### Local Data Persistence
+
+The local data persistence feature allows the app to store relevant data locally on the device. This enables seamless offline access to previously fetched information, such as tutor profiles, course details, and user preferences. Local data persistence ensures a consistent user experience, even in situations where internet connectivity is limited or unavailable.
 
 ## Bugs and Issues
 
