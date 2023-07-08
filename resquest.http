@@ -1,4 +1,4 @@
-POST http://127.0.0.1:8000/auth
+POST http://127.0.0.1:8000/signin
 Content-type: application/json
 
 {
@@ -6,13 +6,18 @@ Content-type: application/json
     "password": "test"
 }
 
+###
 
 POST http://127.0.0.1:8000/createposts
 Content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJvdG9uLm1lIiwicGFzc3dvcmQiOiJ0ZXN0IiwiaXNzIjoiRWR1QnVkZHkiLCJzdWIiOiJoYWxuXzAxQHByb3Rvbi5tZSIsImV4cCI6MTY4ODkzNDI3NCwibmJmIjoxNjg4ODQ3ODc0LCJpYXQiOjE2ODg4NDc4NzR9.up5suFRxIinNx5W4ezqG9bfrwsYgNDDI8FglapVZ6mo
 
 {
-    "email": "haln_01@proton.me",
-    "course": "Math101",
+    "course": "MATH101",
     "role": "student"
 }
 
+###
+
+GET http://127.0.0.1:8000/test
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJvdG9uLm1lIiwicGFzc3dvcmQiOiJ0ZXN0IiwiaXNzIjoiRWR1QnVkZHkiLCJzdWIiOiJoYWxuXzAxQHByb3Rvbi5tZSIsImV4cCI6MTY4ODkyOTkwMCwibmJmIjoxNjg4ODQzNTAwLCJpYXQiOjE2ODg4NDM1MDB9.heS2BJP1i6TVjOBHzp2_li4ymlc6BUHhNBPlyGJeq_Y
