@@ -18,6 +18,7 @@ func main() {
 
 	r.Handle("/auth", http.HandlerFunc(h.SignUp))
 	r.Handle("/auth", http.HandlerFunc(h.SignIn))
+	r.Handle("/createposts", http.HandlerFunc(h.CreatePost))
 
 	log.Println("PORT 8000")
 	log.Fatal(http.ListenAndServe(":8000", r))

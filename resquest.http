@@ -5,3 +5,14 @@ Content-type: application/json
     "email": "haln_01@proton.me",
     "password": "test"
 }
+
+
+POST http://127.0.0.1:8000/createposts
+Content-type: application/json
+
+{
+    "email": "haln_01@proton.me",
+    "course": "Math101",
+    "role": "student"
+}
+

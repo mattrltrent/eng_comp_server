@@ -10,6 +10,7 @@ var (
 	err error
 
 	TableUsers = "users"
+	TablePosts = "posts"
 )
 
 type User struct {
