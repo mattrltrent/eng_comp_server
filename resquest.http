@@ -1,0 +1,7 @@
+POST http://127.0.0.1:8000/auth
+Content-type: application/json
+
+{
+    "email": "haln_01@proton.me",
+    "password": "test"
+}
