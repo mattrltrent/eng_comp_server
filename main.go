@@ -19,6 +19,7 @@ func main() {
 	h := handlers.New()
 
 	r.Handle("/auth", http.HandlerFunc(h.SignUp))
+	r.Handle("/createposts", http.HandlerFunc(h.CreatePost))
 	r.Handle("/signin", http.HandlerFunc(h.SignIn))
 
 	r.Route("/", func(r chi.Router) {

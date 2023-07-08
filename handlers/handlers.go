@@ -12,6 +12,7 @@ import (
 
 var (
 	ErrMissingToken = errors.New("missing auth token")
+	ErrNotFound     = errors.New("not found")
 )
 
 type Handler struct {
@@ -45,4 +46,18 @@ func GetUser(r *http.Request) (*Token, error) {
 		return nil, ErrMissingToken
 	}
 	return ParseJwt(authHeader)
+}
+
+func (database *Handler) GetUserInfo(t *Token) (*db.User, error) {
+	var u db.User
+	result := database.Table(db.TableUsers).Where("email = ?", t.Email).First(&u)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	if result.RowsAffected == 0 {
+		return nil, ErrNotFound
+	}
+
+	return &u, nil
 }
