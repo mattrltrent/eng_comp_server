@@ -19,8 +19,9 @@ type AuthData struct {
 }
 
 type Token struct {
-	Email string `json:"email"`
-	jwt.RegisteredClaims
+	Email  string `json:"email"`
+	UserID uint   `json:"user_id"`
+	*jwt.RegisteredClaims
 }
 
 func (d *Handler) SignUp(w http.ResponseWriter, r *http.Request) {
@@ -88,15 +89,17 @@ func (d *Handler) SignIn(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// sign jwt
+	reg := jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
+		IssuedAt:  jwt.NewNumericDate(time.Now()),
+		NotBefore: jwt.NewNumericDate(time.Now()),
+		Issuer:    "EduBuddy",
+		Subject:   user.Email,
+	}
 	claims := Token{
-		auth.Email,
-		jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
-			IssuedAt:  jwt.NewNumericDate(time.Now()),
-			NotBefore: jwt.NewNumericDate(time.Now()),
-			Issuer:    "EduBuddy",
-			Subject:   user.Email,
-		},
+		Email:            user.Email,
+		UserID:           user.ID,
+		RegisteredClaims: &reg,
 	}
 
 	t := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)

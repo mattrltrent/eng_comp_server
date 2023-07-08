@@ -34,4 +34,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJv
 
 ###
 
-GET http://127.0.0.1:8000/list?course=foo&course=bar&role=tutor
+POST http://127.0.0.1:8000/list?course=foo&course=bar&role=tutor
+Content-type: application/json
+
+{ "bar":"asdfdsfkl" }
