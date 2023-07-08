@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -14,6 +15,7 @@ import (
 )
 
 type AuthData struct {
+	User     string `json:"username,omitempty"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
@@ -48,14 +50,47 @@ func (d *Handler) SignUp(w http.ResponseWriter, r *http.Request) {
 	auth.Password = string(hashed)
 
 	// save to db
+	auth.User = strings.Split(auth.Email, "@")[0]
 	if err := d.Table(db.TableUsers).Create(&auth).Error; err != nil {
-		fmt.Fprint(os.Stderr, err)
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(map[string]string{"error": "duplicate email"})
+		lib.Err(w, err.Error())
+		return
+	}
+
+	// sign jwt
+	// pull user
+	var user db.User
+	result := d.Table(db.TableUsers).Where("email = ?", auth.Email).First(&user)
+	if result.RowsAffected == 0 {
+		w.WriteHeader(http.StatusUnauthorized)
+		lib.Err(w, "user not found")
+		return
+	}
+
+	// sign jwt
+	reg := jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
+		IssuedAt:  jwt.NewNumericDate(time.Now()),
+		NotBefore: jwt.NewNumericDate(time.Now()),
+		Issuer:    "EduBuddy",
+		Subject:   user.Email,
+	}
+	claims := Token{
+		Email:            user.Email,
+		UserID:           user.ID,
+		RegisteredClaims: &reg,
+	}
+
+	t := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	token, err := t.SignedString([]byte(lib.JwtSecret))
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		lib.Err(w, err.Error())
 		return
 	}
 
 	w.WriteHeader(http.StatusCreated)
+	lib.JSON(w, map[string]string{"token": token})
 }
 
 func (d *Handler) SignIn(w http.ResponseWriter, r *http.Request) {

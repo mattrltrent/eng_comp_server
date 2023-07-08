@@ -17,6 +17,7 @@ var (
 
 type User struct {
 	ID       uint   `gorm:"primaryKey"`
+	User     string `json:"-"`
 	Email    string `gorm:"unique"`
 	Password string `gorm:""`
 }

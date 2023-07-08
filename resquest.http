@@ -34,7 +34,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJv
 
 ###
 
-POST http://127.0.0.1:8000/list?course=foo&course=bar&role=tutor
+POST http://127.0.0.1:8000/list
 Content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJvdG9uLm1lIiwicGFzc3dvcmQiOiJ0ZXN0IiwiaXNzIjoiRWR1QnVkZHkiLCJzdWIiOiJoYWxuXzAxQHByb3Rvbi5tZSIsImV4cCI6MTY4ODkyOTkwMCwibmJmIjoxNjg4ODQzNTAwLCJpYXQiOjE2ODg4NDM1MDB9.heS2BJP1i6TVjOBHzp2_li4ymlc6BUHhNBPlyGJeq_Y
 
-{ "bar":"asdfdsfkl" }
+{
+    "role": "student",
+    "courses": ["math101", "csc230"]
+}
+
