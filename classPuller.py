@@ -49,18 +49,39 @@ class BannerClient(requests.Session):
 
 
 
-def main():
+def get_data_json():
     client = BannerClient()
     client.set_term()
-    data = client.get_data(0)
-    data += client.get_data(1)
-    data += client.get_data(2)
-    data += client.get_data(3)
-    data += client.get_data(4)
-    data += client.get_data(5)
-    data += client.get_data(6)
-    data += client.get_data(7)
+    i = 0
+    data = client.get_data(i)
+
+    while len(data) > 1:
+        i += 1
+        data += client.get_data(i)
+
     with open("data.json", "a") as f:
         f.write(json.dumps(data, separators=(',', ':')))
 
+
+def get_classes():
+    with open("data.json", "r") as f:
+        data = json.loads(f.read())
+
+    classes = []
+    for course in data:
+        classes.append(course["subject"] + " " + course["courseNumber"])
+
+
+    classes = sorted(list(set(classes)))
+    with open("classes.json", "w") as f:
+        f.write(json.dumps(classes, separators=(',', ':')))
+
+
+
+
+def main():
+    get_classes()
+
 main()
+
+
