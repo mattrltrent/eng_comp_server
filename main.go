@@ -21,6 +21,7 @@ func main() {
 	r.Handle("/auth", http.HandlerFunc(h.SignUp))
 	r.Handle("/createposts", http.HandlerFunc(h.CreatePost))
 	r.Handle("/signin", http.HandlerFunc(h.SignIn))
+	r.Handle("/list", http.HandlerFunc(h.ListPosts))
 
 	r.Route("/", func(r chi.Router) {
 		r.Handle("/test", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

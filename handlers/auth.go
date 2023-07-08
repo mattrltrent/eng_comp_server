@@ -19,7 +19,7 @@ type AuthData struct {
 }
 
 type Token struct {
-	AuthData
+	Email string `json:"email"`
 	jwt.RegisteredClaims
 }
 
@@ -89,7 +89,7 @@ func (d *Handler) SignIn(w http.ResponseWriter, r *http.Request) {
 
 	// sign jwt
 	claims := Token{
-		auth,
+		auth.Email,
 		jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
