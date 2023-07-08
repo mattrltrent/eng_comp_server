@@ -17,6 +17,7 @@ func main() {
 	h := handlers.New()
 
 	r.Handle("/auth", http.HandlerFunc(h.SignUp))
+	r.Handle("/auth", http.HandlerFunc(h.SignIn))
 
 	log.Println("PORT 8000")
 	log.Fatal(http.ListenAndServe(":8000", r))

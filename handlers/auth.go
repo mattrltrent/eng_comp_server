@@ -49,3 +49,5 @@ func (d *Handler) SignUp(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusCreated)
 }
+
+func (d *Handler) SignIn(w http.ResponseWriter, r *http.Request) {}
