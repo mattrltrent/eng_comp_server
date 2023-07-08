@@ -40,8 +40,12 @@ func (d *Handler) SignUp(w http.ResponseWriter, r *http.Request) {
 	auth.Password = string(hashed)
 
 	// save to db
-
 	if err := d.Table(db.TableUsers).Create(&auth).Error; err != nil {
-
+		fmt.Fprint(os.Stderr, err)
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]string{"error": "duplicate email"})
+		return
 	}
+
+	w.WriteHeader(http.StatusCreated)
 }
