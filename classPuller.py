@@ -1,7 +1,7 @@
 from typing import List
 import requests
 from urllib import parse
-
+import json
 
 
 class BannerClient(requests.Session):
@@ -21,8 +21,10 @@ class BannerClient(requests.Session):
 
         self._MAX_SIZE = 500  # NOTE: max from banner is 500
 
+    def set_term(self):
+        self.post(self.banner_set_term, data={"term": self.term})
 
-    def get_data(self, offset: int, term: str = "202305") -> list | None:
+    def get_data(self, offset: int, term: str = "202305"):
         self.term = self.term or term
         q = {
             "txt_term": self.term,
@@ -37,10 +39,28 @@ class BannerClient(requests.Session):
         payload = resp.json()
 
         data = payload["data"]
-        if len(data) == 0:
-            print("no data found")
-            return None
+        # if len(data) == 0:
+        #     print("no data found")
+        #     return None
 
-        fetched = offset * self._MAX_SIZE + len(data)
-        print(f"fetched {fetched}/{payload['sectionsFetchedCount']}")
+        # fetched = offset * self._MAX_SIZE + len(data)
+        # print(f"fetched {fetched}/{payload['sectionsFetchedCount']}")
         return data
+
+
+
+def main():
+    client = BannerClient()
+    client.set_term()
+    data = client.get_data(0)
+    data += client.get_data(1)
+    data += client.get_data(2)
+    data += client.get_data(3)
+    data += client.get_data(4)
+    data += client.get_data(5)
+    data += client.get_data(6)
+    data += client.get_data(7)
+    with open("data.json", "a") as f:
+        f.write(json.dumps(data, separators=(',', ':')))
+
+main()
