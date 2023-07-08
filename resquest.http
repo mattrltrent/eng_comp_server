@@ -43,3 +43,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJv
     "courses": ["math101", "csc230"]
 }
 
+###
+POST https://eng-comp.onrender.com/auth
+
+{
+    "role": "student",
+    "courses": ["math101", "csc230"]
+}

@@ -29,6 +29,8 @@ func (d *Handler) ListPosts(w http.ResponseWriter, r *http.Request) {
 		lib.Err(w, err.Error())
 		return
 	}
+	user, _ := d.GetUserInfo(tok)
+
 	// parse query
 	var q Query
 	if err := json.NewDecoder(r.Body).Decode(&q); err != nil {
@@ -42,8 +44,7 @@ func (d *Handler) ListPosts(w http.ResponseWriter, r *http.Request) {
 		var _ []TutorEntry
 		d.Table("posts").
 			Joins("JOIN users ON posts.user_id=user.id").
-			Where("course = ? AND users.id=?", strings.ToUpper(c), tok.Email)
-
+			Where("course = ? AND users.id=?", strings.ToUpper(c), user.ID)
 	}
 	log.Println(tutorEntries)
 }
