@@ -72,8 +72,9 @@ The local data persistence feature allows the app to store relevant data locally
 
 ## Bugs and Issues
 
-- Deployment
-- Possible SQLi
+Deployment,
+Connection Failure
+Possible SQL injection
 
 ## Future Development
 
