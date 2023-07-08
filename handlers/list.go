@@ -14,6 +14,14 @@ type Query struct {
 	Courses []string `json:"courses"`
 }
 
+type TutorEntry struct {
+	ID          uint   `json:"id"`
+	Role        string `json:"role"`
+	Course      string `json:"course"`
+	Description string `json:"description"`
+	User        string `json:"user"`
+}
+
 func (d *Handler) ListPosts(w http.ResponseWriter, r *http.Request) {
 	tok, err := GetUser(r)
 	if err != nil {
@@ -21,15 +29,6 @@ func (d *Handler) ListPosts(w http.ResponseWriter, r *http.Request) {
 		lib.Err(w, err.Error())
 		return
 	}
-
-	user, err := d.GetUserInfo(tok)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		lib.Err(w, err.Error())
-		return
-	}
-	log.Println(user)
-
 	// parse query
 	var q Query
 	if err := json.NewDecoder(r.Body).Decode(&q); err != nil {
@@ -38,18 +37,13 @@ func (d *Handler) ListPosts(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// query all posts with matching courses
-	orClause := []string{}
-	for idx, course := range q.Courses {
-		q.Courses[idx] = strings.ToUpper(course)
-		orClause = append(orClause, " course = ? ")
-	}
-	or := strings.Join(orClause, "OR")
-	join := "JOIN users ON posts.user_id=user.id"
+	var tutorEntries []TutorEntry
+	for _, c := range q.Courses {
+		var _ []TutorEntry
+		d.Table("posts").
+			Joins("JOIN users ON posts.user_id=user.id").
+			Where("course = ? AND users.id=?", strings.ToUpper(c), tok.Email)
 
-	sql := "SELECT posts.id,posts.role,posts.course,posts.description,users.user FROM posts"
-	sql += " WHERE post_user"
-	sql += or
-	sql += join
-	log.Println(sql)
+	}
+	log.Println(tutorEntries)
 }
