@@ -28,7 +28,6 @@ func main() {
 				if errors.Is(err, handlers.ErrMissingToken) {
 					w.WriteHeader(http.StatusForbidden)
 				} else {
-
 					w.WriteHeader(http.StatusInternalServerError)
 				}
 				lib.Err(w, err.Error())
