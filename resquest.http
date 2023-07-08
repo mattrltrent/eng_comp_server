@@ -1,3 +1,12 @@
+POST http://127.0.0.1:8000/auth
+Content-type: application/json
+
+{
+    "email": "haln_01@proton.me",
+    "password": "test"
+}
+###
+
 POST http://127.0.0.1:8000/signin
 Content-type: application/json
 
@@ -10,7 +19,7 @@ Content-type: application/json
 
 POST http://127.0.0.1:8000/createposts
 Content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJvdG9uLm1lIiwicGFzc3dvcmQiOiJ0ZXN0IiwiaXNzIjoiRWR1QnVkZHkiLCJzdWIiOiJoYWxuXzAxQHByb3Rvbi5tZSIsImV4cCI6MTY4ODkzNDI3NCwibmJmIjoxNjg4ODQ3ODc0LCJpYXQiOjE2ODg4NDc4NzR9.up5suFRxIinNx5W4ezqG9bfrwsYgNDDI8FglapVZ6mo
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJvdG9uLm1lIiwicGFzc3dvcmQiOiJ0ZXN0IiwiaXNzIjoiRWR1QnVkZHkiLCJzdWIiOiJoYWxuXzAxQHByb3Rvbi5tZSIsImV4cCI6MTY4ODkzNDQ1OCwibmJmIjoxNjg4ODQ4MDU4LCJpYXQiOjE2ODg4NDgwNTh9._k3n8xlXKHnE8dT9OPHTlLbOgc9dBAN28BraLFQjLS4
 
 {
     "course": "MATH101",
