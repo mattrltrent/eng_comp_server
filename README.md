@@ -4,6 +4,7 @@ Students need tutors, and tutors need students; we connect them. We aim to offer
 
 - Client code [here](https://github.com/mattrltrent/eng_comp_client).
 - The team: [Jaspreet Sidhu](https://github.com/jaspreetks), [Chris Huk](https://github.com/TalentedB), [Hal Nguyen](https://github.com/hn275), and [Matthew Trent](https://github.com/mattrltrent).
+- From idea to tangible product in <8 hours.
 
 ## Tables of Contents
 
