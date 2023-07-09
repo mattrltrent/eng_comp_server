@@ -2,6 +2,9 @@
 
 Students need tutors, and tutors need students; we connect them. We aim to offer a seamless and convenient learning experience. EduBuddy is developed using the Flutter framework, ensuring cross-platform compatibility. Tutors can create postings to showcase their availability and location on the UVic campus, while students can also make postings based on their tutoring requirements.
 
+- Client code [here](https://github.com/mattrltrent/eng_comp_client).
+- The team: [Jaspreet Sidhu](https://github.com/jaspreetks), [Chris Huk](https://github.com/TalentedB), [Hal Nguyen](https://github.com/hn275), and [Matthew Trent](https://github.com/mattrltrent).
+
 ## Tables of Contents
 
 1. [Technologies](#technologies)
@@ -9,6 +12,7 @@ Students need tutors, and tutors need students; we connect them. We aim to offer
 3. [Key Features](#key-features)
 4. [Bugs and Issues](#bugs-and-issues)
 5. [Future Development](#future-development)
+6. [Results 🥇](#results-1st-place-)
 
 ## Technologies
 
@@ -97,3 +101,9 @@ To improve the searching capability, the app will implement a better fuzzy searc
 ### Search Caching
 
 Search caching will be implemented using Redis. This feature aims to improve search performance by storing frequently executed search queries and their results in memory. By caching search results, subsequent searches with the same query will retrieve data from the cache, reducing the load on the backend and enhancing overall app responsiveness.
+
+## Results: 1st place 🥇
+
+<img src="https://raw.githubusercontent.com/mattrltrent/random_assets/main/victory.JPG" alt="img" width="300" />
+
+<sub>^ (everyone on the team got a certificate, this is just mine)</sub>
